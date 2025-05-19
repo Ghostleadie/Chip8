@@ -3,7 +3,7 @@
 #
 
 # Add source to this project's executable.
-add_executable (RaylibApp "RaylibApp.cpp" "RaylibApp.h" "log/log.cpp" "log/log.h")
+add_executable (RaylibApp "RaylibApp.cpp" "RaylibApp.h" "log/log.cpp" "log/log.h" "cpu/cpu.cpp" "cpu/cpu.h" "cpu/rom.cpp" "cpu/rom.h" "cpu/opcodes.cpp" "cpu/opcodes.h")
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET RaylibApp PROPERTY CXX_STANDARD 20)
