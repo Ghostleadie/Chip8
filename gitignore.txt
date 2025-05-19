@@ -12,7 +12,7 @@ _deps
 CMakeUserPresets.json
 
 #project files
-out/
+/out
 
 # Visual Studio
 .vs/
