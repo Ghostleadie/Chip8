@@ -3,8 +3,8 @@
 class rom
 {
 public:
-	static void* loadROM(const char* filename, char* memory);
+	static void loadROM(const char* filename, char* memory);
 
-private:
-	const unsigned int START_ADDRESS = 0x200;
+protected:
+	static const unsigned int START_ADDRESS = 0x200;
 };
