@@ -3,7 +3,6 @@
 
 #include "RaylibApp.h"
 #include "raylib.h"
-#include "log/Log.h"
 
 using namespace std;
 
