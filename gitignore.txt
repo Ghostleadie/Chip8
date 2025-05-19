@@ -15,5 +15,6 @@ CMakeUserPresets.json
 /out
 
 # Visual Studio
+/.vs
 .vs/
 *.user
