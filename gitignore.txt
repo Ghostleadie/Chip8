@@ -11,6 +11,9 @@ CTestTestfile.cmake
 _deps
 CMakeUserPresets.json
 
+#project files
+out/
+
 # Visual Studio
 .vs/
 *.user
