@@ -1,9 +1,8 @@
 ﻿// RaylibApp.cpp : Defines the entry point for the application.
 //
 
-#include "log/Log.h"
-#include "raylib.h"
 #include "RaylibApp.h"
+#include "raylib.h"
 
 using namespace std;
 

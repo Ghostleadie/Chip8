@@ -9,6 +9,8 @@ if (CMAKE_VERSION VERSION_GREATER 3.12)
   set_property(TARGET RaylibApp PROPERTY CXX_STANDARD 20)
 endif()
 
+target_precompile_headers(RaylibApp PUBLIC pch.h)
+
 target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(${PROJECT_NAME} spdlog)
 # TODO: Add tests and install targets if needed.
