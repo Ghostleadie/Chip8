@@ -33,6 +33,47 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   endif()
 endif()
 
+set(IMGUI_VERSION 1.91.8)
+find_package(imgui ${IMGUI_VERSION} QUIET) # QUIET or REQUIRED
+if (NOT imgui_FOUND) # If there's none, fetch and build raylib
+    include(FetchContent)
+    FetchContent_Declare(
+            imgui
+            URL https://github.com/ocornut/imgui/archive/refs/tags/v${IMGUI_VERSION}.tar.gz
+    )
+    FetchContent_GetProperties(imgui)
+    if (NOT imgui_POPULATED) # Have we downloaded imgui yet?
+        set(FETCHCONTENT_QUIET NO)
+        FetchContent_MakeAvailable(imgui)
+    endif()
+endif()
+add_library(imgui STATIC
+        ${imgui_SOURCE_DIR}/imgui.cpp
+        ${imgui_SOURCE_DIR}/imgui_demo.cpp
+        ${imgui_SOURCE_DIR}/imgui_draw.cpp
+        ${imgui_SOURCE_DIR}/imgui_tables.cpp
+        ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+)
+target_include_directories(imgui INTERFACE ${imgui_SOURCE_DIR})
+
+# RlImGui __________________________________________
+FetchContent_Declare(
+        rlimgui
+        GIT_REPOSITORY "https://github.com/raylib-extras/rlImGui.git"
+        GIT_TAG        main
+        CONFIGURE_COMMAND ""
+        BUILD_COMMAND ""
+)
+FetchContent_GetProperties(rlimgui)
+if(NOT rlimgui_POPULATED)
+    FetchContent_Populate(rlimgui)
+    FetchContent_MakeAvailable(rlimgui)
+endif()
+
+add_library(rlimgui STATIC ${rlimgui_SOURCE_DIR}/rlImGui.cpp)
+target_link_libraries(rlimgui PRIVATE raylib imgui)
+target_include_directories(rlimgui INTERFACE ${rlimgui_SOURCE_DIR})
+
 find_package(spdlog QUIET)
 if(NOT spdlog_FOUND)
     FetchContent_Declare(

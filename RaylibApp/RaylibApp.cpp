@@ -2,7 +2,15 @@
 //
 
 #include "RaylibApp.h"
+
+#include "imgui.h"
+#include "imgui_impl_raylib.h"
 #include "raylib.h"
+#include "rlImGui.h"
+
+#define RAYGUI_IMPLEMENTATION
+
+
 
 #define XBOX_ALIAS_1 "xbox"
 #define XBOX_ALIAS_2 "x-box"
@@ -36,6 +44,8 @@ int main()
     const float rightTriggerDeadzone = -0.9f;
 
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
+
+    rlImGuiSetup(true);
     //--------------------------------------------------------------------------------------
 
     // Main game loop
@@ -118,16 +128,13 @@ int main()
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
-
         ClearBackground(RAYWHITE);
-
         switch (currentScreen)
         {
             case Logo:
             {
                 // TODO: Draw LOGO screen here!
-                DrawText("LOGO SCREEN", 20, 20, 40, LIGHTGRAY);
-                DrawText("WAIT for 2 SECONDS...", 290, 220, 20, GRAY);
+                DrawText("Chip 8 Emulator by Jack Brewer", 20, 20, 40, LIGHTGRAY);
 
             } break;
             case Menu:
@@ -173,16 +180,33 @@ int main()
             {
                 break;
             }
-
-            if (exitWindowRequested)
-            {
-                DrawRectangle(0, screenHeight / 2, screenWidth, screenHeight / 4, BLACK);
-                DrawText("Are you sure you want to exit program? [Y/N]", 40, screenHeight / 2, 15, WHITE);
-            }
         }
 
-        EndDrawing();
         //----------------------------------------------------------------------------------
+        //UI
+        //----------------------------------------------------------------------------------
+
+        rlImGuiBegin();
+
+
+        bool open = true;
+        ImGui::ShowDemoWindow(&open);
+        open = true;
+        if (ImGui::Begin("Test Window", &open))
+        {
+        }
+        ImGui::End();
+        rlImGuiEnd();
+
+
+        //----------------------------------------------------------------------------------
+
+        if (exitWindowRequested)
+        {
+            DrawRectangle(0, screenHeight / 2, screenWidth, screenHeight / 4, BLACK);
+            DrawText("Are you sure you want to exit program? [Y/N]", 40, screenHeight / 2, 15, WHITE);
+        }
+        EndDrawing();
     }
 
     // De-Initialization

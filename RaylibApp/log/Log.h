@@ -12,6 +12,7 @@ public:
 
 	inline static std::shared_ptr<spdlog::logger>& GetLogger() { return m_Logger;}
 
+	void log()
 private:
 	static std::shared_ptr<spdlog::logger> m_Logger;
 };

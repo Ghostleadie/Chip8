@@ -13,4 +13,7 @@ target_precompile_headers(RaylibApp PUBLIC pch.h)
 
 target_link_libraries(${PROJECT_NAME} raylib)
 target_link_libraries(${PROJECT_NAME} spdlog)
+target_link_libraries(${PROJECT_NAME} rlimgui)
+target_link_libraries(${PROJECT_NAME} imgui)
+#target_include_directories(RaylibApp INTERFACE "${raygui_SOURCE_DIR}")
 # TODO: Add tests and install targets if needed.
